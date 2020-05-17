@@ -3,27 +3,33 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # source the url completion script via path relative to this file
-source "$SCRIPTPATH/../../url_completion.sh"
 default_startup_script="$HOME/.bashrc"
 startup_script="${1:-$default_startup_script}"
 
+echo " -> INSTALLING URL COMPLETION FOR GIT"
 
 # does __url_completion exist?
 if [[ -z $(type -t "__url_completion") ]]; then
-    # nope: give a warning to user and exit
-    echo "Missing __url_completion function,"
-    echo "make sure you source the url_completion.sh"
-    echo "file before you source this script"
-    exit 1
+    # nope: try to source it
+    echo " -> SOURCING url_completion.sh"
+    source "$SCRIPTPATH/../../url_completion.sh" > /dev/null 2>&1
+    if [[ $? != "0" ]]; then
+        # something is horribly wrong :(
+        echo "Failed to source url_completion.sh file"
+        echo "is it missing? is it corrupted?"
+        echo "did you try to source this file instead of"
+        echo "running it? Please report this"
+        echo "error and the steps you took to reproduce it."
+        exit 1
+    fi
 fi
 
-
-echo " -> USING STARTUP SCRIPT $startup_script"
 
 
 # only load the script if it has not
 # been loaded as an environment variable
 if [[ -z $STARTUP_SCRIPT_LOADED ]]; then
+    echo " -> LOADING STARTUP SCRIPT $startup_script"
     STARTUP_SCRIPT_LOADED="$(<$startup_script)"
 fi
 
@@ -55,10 +61,9 @@ fi
 # does startup script already contain the __git_remotes overwrite?
 if [[ $STARTUP_SCRIPT_LOADED != *"eval __orig_\"\$(declare -f __git_remotes)\""* ]]; then
     echo " -> OVERWRITING __git_remotes function"
-    echo -e "\n"
+    echo -e "\n" >> "$startup_script"
     echo -e "\neval __orig_\"\$(declare -f __git_remotes)\"" >> "$startup_script"
     echo -e "\n__git_remotes(){ __orig___git_remotes ; __url_completion ; }" >> "$startup_script"
 fi
 
 echo " -> ALL DONE :)"
-echo ""
