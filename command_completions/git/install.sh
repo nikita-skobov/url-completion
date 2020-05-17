@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [[ -z $SCRIPTPATH ]]; then SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )" ; fi
 LIBPATH="$SCRIPTPATH/../../lib/lib.sh"
 if [[ -z $__COMPLETION_LIB_LOADED ]]; then source "$LIBPATH" ; fi
