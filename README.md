@@ -4,7 +4,7 @@
 
 ## What is it?
 
-url-completion is a collection of scripts that modify common commands to allow for url tab completion in bash.
+`url-completion` is a collection of scripts that modify common commands to allow for URL tab completion in bash.
 
 ## How does it work?
 
@@ -41,7 +41,7 @@ Alternatively, create this file somewhere else, and then make sure to edit your 
 __url_completion_file="/absolute/path/to/your/file"
 ```
 
-Next, you can install the command_completion scripts in two ways:
+Next, you can install the `command_completion/` scripts in two ways:
 
 1. Install everything within `command_completions/`
     - There is a script `install_commands.sh` in the root of this repo which will iterate through, and install every command completion script in the `command_completions/` directory.
