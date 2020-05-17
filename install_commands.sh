@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 
-SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-source "$SCRIPTPATH/url_completion.sh"
+OUTTER_SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+SCRIPTPATH="$OUTTER_SCRIPTPATH/command_completions/git"
+LIBPATH="$OUTTER_SCRIPTPATH/lib/lib.sh"
+if [[ -z $__COMPLETION_LIB_LOADED ]]; then source "$LIBPATH" ; fi
 default_startup_script="$HOME/.bashrc"
 startup_script="${1:-$default_startup_script}"
 
-echo " -> LOADING STARTUP SCRIPT $startup_script"
+log_step "LOADING STARTUP SCRIPT $startup_script"
 STARTUP_SCRIPT_LOADED="$(<$startup_script)"
-echo " -> Installing everything from command_completions:"
+log_step "Installing everything from command_completions:"
 
-for install_file in $SCRIPTPATH/command_completions/*/install.sh; do
-    echo " -> ====== "
+log_step "======"
+for install_file in $OUTTER_SCRIPTPATH/command_completions/*/install.sh; do
+    PREFIX_SPACES="   "
     source "$install_file"
-    echo " -> ====== "
+    PREFIX_SPACES=" "
+    log_step "======"
 done
+
+log_step "Done installing everything :)"
