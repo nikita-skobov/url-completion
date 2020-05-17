@@ -8,4 +8,4 @@ In the future, if you wish to add a completion to use url completions for a comm
 
 # Available completions:
 
-- [git](./git/README.md)
+- [git](./git/)
