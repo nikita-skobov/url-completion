@@ -52,3 +52,26 @@ Next, you can install the `command_completion/` scripts in two ways:
 
 For a full list of command completion scripts, see the [./command_completions](./command_completions/README.md) directory
 
+## The url history file
+
+The url history file should contain a single url per line. it doesn't even have to contain urls, any line that is included in this file will be used for tab completion for the commands that `url_completion` was installed for.
+
+Most users type urls in the command line all the time. If you want to easily output a list of urls from your history, there is a script provided called `get_urls_from_history.sh`.
+
+This script is meant to be sourced because it uses the history command, which requires it to be ran in an interactive shell (ie: not as a script). So if you do:
+
+```sh
+source ./get_urls_from_history.sh
+```
+
+it will echo out any url that it finds from your history. Then, if you want to simply append your url history with the entire output, you can do:
+
+```sh
+source ./get_urls_from_history.sh >> $HOME/.url_history
+
+# or if your __url_completion_file variable is defined:
+source ./get_urls_from_history.sh >> $__url_completion_file
+```
+
+Alternatively, you can just manually pick the urls you wish to save from the output of `get_urls_from_history.sh`
+
