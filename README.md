@@ -27,11 +27,17 @@ git clone https://github.com/nikita-skobov/url-completion
 cd url-completion
 ```
 
-You will want to create a url history file somewhere. For simplest use, you can do:
+You will need to create a url history file somewhere. For your convenience, a `.url_history` file is provided in this repo, so you can use that by copying it to the default url history location:
+
+```sh
+cp ./.url_history $HOME
+```
+
+Otherwise, you can create on yourself. For simplest use, you can do:
 
 ```sh
 # replace the below url with whatever you want
-echo "https://github.com/nikita-skobov" > $HOME/.url_history
+echo "https://github.com" > $HOME/.url_history
 ```
 
 Alternatively, create this file somewhere else, and then make sure to edit your startup script and add this line:
