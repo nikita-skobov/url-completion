@@ -1,5 +1,7 @@
 # url-completion
 
+![tab completion example](./example.gif)
+
 ## What is it?
 
 url-completion is a collection of scripts that modify common commands to allow for url tab completion in bash.
