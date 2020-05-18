@@ -35,6 +35,18 @@ source_url_completion_if_not_exist() {
     fi
 }
 
+# takes $1 as the name of function
+# returns true if it exists
+# or false otherwise
+function_exists() {
+    if [[ -z $(type -t "$1") ]]; then
+        # does not exist
+        return 1
+    fi
+    # does exist
+    return 0
+}
+
 
 # A helper function that checks if an environment
 # variable: STARTUP_SCRIPT_LOADED has been set already.
