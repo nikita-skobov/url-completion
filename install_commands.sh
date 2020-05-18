@@ -9,6 +9,10 @@ startup_script="${1:-$default_startup_script}"
 
 log_step "LOADING STARTUP SCRIPT $startup_script"
 STARTUP_SCRIPT_LOADED="$(<$startup_script)"
+
+add_comment_guard_before "$startup_script"
+unset __SHOULD_ADD_COMMENT_GUARDS
+
 log_step "Installing everything from command_completions:"
 
 log_step "======"
@@ -21,5 +25,8 @@ for install_file in $OUTTER_SCRIPTPATH/command_completions/*/install.sh; do
     PREFIX_SPACES=" "
     log_step "======"
 done
+
+__SHOULD_ADD_COMMENT_GUARDS="true"
+add_comment_guard_after "$startup_script"
 
 log_step "Done installing everything :)"

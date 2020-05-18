@@ -111,4 +111,20 @@ startup_script_has() {
     return 1
 }
 
+# call this after adding any lines to the $1 file
+add_comment_guard_after() {
+    if [[ ! -z $__SHOULD_ADD_COMMENT_GUARDS && -f $1 ]]; then
+        echo "# THE ABOVE LINES ^^^^ WERE ADDED BY $__PROJECT_NAME" >> "$1"
+    fi
+}
+
+# call this before adding any lines to the $1 file
+add_comment_guard_before() {
+    if [[ ! -z $__SHOULD_ADD_COMMENT_GUARDS && -f $1 ]]; then
+        echo "# THE BELOW LINES vvvv WERE ADDED BY $__PROJECT_NAME" >> "$1"
+    fi
+}
+
+__SHOULD_ADD_COMMENT_GUARDS="true"
+__PROJECT_NAME="https://github.com/nikita-skobov/url-completion"
 __COMPLETION_LIB_LOADED="true"
