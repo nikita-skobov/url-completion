@@ -10,3 +10,4 @@ In the future, if you wish to add a completion to use url completions for a comm
 
 - [git](./git/)
 - [ssh,scp](./ssh/)
+- [git-clone](./git-clone)
