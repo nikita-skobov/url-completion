@@ -13,8 +13,8 @@ write_colon_removal_to_file_if_not_exist "$startup_script"
 
 if ! startup_script_has "eval __orig_\"\$(declare -f _known_hosts_real)\"" ; then
     log_step "OVERWRITING _known_hosts_real function"
-    echo -e "\neval __orig_\"\$(declare -f _known_hosts_real)\"" >> "$startup_script"
-    echo -e "\n_known_hosts_real(){ for i in \$(__url_completion); do COMPREPLY+=( \$i ) ; done ; __orig__known_hosts_real \"\$@\" ; }" >> "$startup_script"
+    echo -e "eval __orig_\"\$(declare -f _known_hosts_real)\"" >> "$startup_script"
+    echo -e "_known_hosts_real(){ for i in \$(__url_completion); do COMPREPLY+=( \$i ) ; done ; __orig__known_hosts_real \"\$@\" ; }" >> "$startup_script"
 fi
 
 log_step "ALL DONE :)"

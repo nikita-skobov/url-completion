@@ -74,7 +74,7 @@ write_url_completion_to_file_if_not_exist() {
         # nope, env var not set, check if the function exists:
         if ! startup_script_has "__url_completion" ; then
             log_step "ADDING __url_completion function"
-            echo -e "\n$(declare -f __url_completion)" >> "$1"
+            echo -e "$(declare -f __url_completion)" >> "$1"
         fi
         # set env var so future scripts
         # dont bother checking it
@@ -93,7 +93,7 @@ write_colon_removal_to_file_if_not_exist() {
         if ! startup_script_has "COMP_WORDBREAKS=\${COMP_WORDBREAKS//:}"; then
             # no, it does not contain the wordbreaks line, so lets add it:
             log_step "REMOVING ':' from COMP_WORDBREAKS"
-            echo -e "\n\nCOMP_WORDBREAKS=\${COMP_WORDBREAKS//:}" >> "$1"
+            echo -e "COMP_WORDBREAKS=\${COMP_WORDBREAKS//:}" >> "$1"
         fi
         # set env variable so that future scripts run in the same
         # subshell dont bother checking for it
