@@ -106,9 +106,9 @@ write_colon_removal_to_file_if_not_exist() {
 # the string given by $1, false otherwise.
 startup_script_has() {
     if [[ $STARTUP_SCRIPT_LOADED == *"$1"* ]]; then
-        true
+        return 0
     fi
-    false
+    return 1
 }
 
 __COMPLETION_LIB_LOADED="true"
