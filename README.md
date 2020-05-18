@@ -20,6 +20,9 @@ and it will show you all urls that exist in the url history file that match `htt
 
 ## Installation
 
+Before you run these install scripts, make sure you have installed, and sourced the [bash-completion](https://github.com/scop/bash-completion) script, and the [git-completion](https://github.com/git/git/blob/master/contrib/completion/git-completion.bash) script (if you want url completion for some git commands).
+These scripts should be sourced in your startup script file prior to running any of the install scripts below.
+
 Clone the repo and cd into it:
 
 ```sh
