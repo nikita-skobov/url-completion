@@ -32,12 +32,12 @@ __url_curl ()
 if ! startup_script_has "complete -F __url_curl curl" ; then
     log_step "HIJACKING COMPLETION COMMAND FOR _curl FUNCTION"
     # force the completion loader to load curl
-    echo -e "_completion_loader curl" >> "$1"
+    echo -e "_completion_loader curl" >> "$startup_script"
     # add in our function to the startup script
-    echo -e "$(declare -f __url_curl)" >> "$1"
+    echo -e "$(declare -f __url_curl)" >> "$startup_script"
     # overwrite the completion function to use __url_curl
     # instead of _curl
-    echo -e "complete -F __url_curl curl" >> "$1"
+    echo -e "complete -F __url_curl curl" >> "$startup_script"
 fi
 add_comment_guard_after "$startup_script"
 
